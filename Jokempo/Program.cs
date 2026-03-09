@@ -55,10 +55,24 @@ static bool ComparacaoEscolhas(int opcaoUser, int opcaoPC, bool vitoria)
     return vitoria;
 }
 
-static void AddListas(List<String> ListaUsers, List<int> ListaVitorias, List<int> ListaDerrotas, String UserAtual, int VitoriaAtual, int DerrotaAtual)
+static void AddListas(List<String> ListaUsers, List<int> ListaVitorias, List<int> ListaDerrotas, String UserAtual, int VitoriaAtual, int DerrotaAtual, bool vitoria)
 {
     ListaUsers.Add(UserAtual);
 
+    if (vitoria = true)
+    {
+        int indexAtual = ListaVitorias.Count();
+        indexAtual = indexAtual - 1;
+        int valorAtual = ListaVitorias[indexAtual];
+        ListaVitorias[indexAtual] = valorAtual+1;
+    } 
+    else
+    {
+        int indexAtual = ListaDerrotas.Count();
+        indexAtual = indexAtual - 1;
+        int valorAtual = ListaDerrotas[indexAtual];
+        ListaVitorias[indexAtual] = valorAtual+1;
+    }
 }
 
 static void Estatisticas(List<string> Users, List<int> Vitorias, List<int> Derrotas)
@@ -75,7 +89,6 @@ static String NomeJogador(String UserAtual, List<string> listaUsers)
 {
     if (listaUsers.Count >= 1)
     {
-
         Console.WriteLine("Deseja mudar de jogador?");
         Console.WriteLine("Escolha uma opção: 1 - Sim ou 2 - Não");
 
@@ -115,6 +128,7 @@ Console.WriteLine("1 - Sim ou 0 - Não");
 
 var continuar = Console.ReadKey().KeyChar;
 
+
 while(continuar == '1')
 {
     int VitoriaAtual = 0;
@@ -128,24 +142,24 @@ while(continuar == '1')
     var opcoes = Escolha(UserAtual);
     vitoria = ComparacaoEscolhas(opcoes.opcaoUser, opcoes.opcaoPC, vitoria);
 
-    if (vitoria = true)
-    {
-        int valorAtual = listaVitorias.Count();
-        listaVitorias[valorAtual - 1];
-    }
-    
-
-    
 
     Console.WriteLine("\nEscolha o que fazer:");
-    Console.WriteLine("1 - Jogar de novo ou 0 - Ver placar");
-    if (Console.ReadKey().KeyChar == '1')
+    Console.WriteLine("0 - Ver placar  1 - Jogar de novo  2 - Sair do Programa");
+    var escolha = Console.ReadKey().KeyChar;
+
+    switch(escolha)
     {
-        continuar = '1';
-    }
-    else 
-    {
-        Estatisticas(listaUsers, listaVitorias, listaDerrotas);
+        case '0':
+            Estatisticas(listaUsers, listaVitorias, listaDerrotas);
+            break;
+
+        case '1':
+            continuar = '1';
+            break;
+
+        case '2':
+            continuar = '0';
+            break;
     }
 }
 Console.WriteLine("👋 Tchau! Até a próxima");
