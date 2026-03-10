@@ -85,7 +85,7 @@ static void Estatisticas(List<string> Users, List<int> Vitorias, List<int> Derro
     }
 }
 
-static String NomeJogador(String UserAtual, List<string> listaUsers)
+static string NomeJogador(string userAtual, List<string> listaUsers)
 {
     if (listaUsers.Count >= 1)
     {
@@ -93,26 +93,30 @@ static String NomeJogador(String UserAtual, List<string> listaUsers)
         Console.WriteLine("Escolha uma opção: 1 - Sim ou 2 - Não");
 
         var novoUser = Console.ReadKey().KeyChar;
+        Console.WriteLine();
+
         if (novoUser == '1')
         {
-            Console.WriteLine("Diga o nome do seu novo usuário:");
-
-            String nomeUser = Console.ReadLine();
-
+            Console.WriteLine("Digite o nome do novo jogador:");
+            string nomeUser = Console.ReadLine();
             return nomeUser;
         }
         else if (novoUser == '2')
         {
-            Console.WriteLine("Continuando como " + UserAtual);
-            return UserAtual;
+            Console.WriteLine("Continuando como " + userAtual);
+            return userAtual;
         }
-    } 
+        else
+        {
+            Console.WriteLine("Opção inválida. Continuando como " + userAtual);
+            return userAtual;
+        }
+    }
     else
     {
         Console.WriteLine("Digite seu nome:");
-
-        String User = Console.ReadLine();
-        return User;
+        string user = Console.ReadLine();
+        return user;
     }
 }
 
